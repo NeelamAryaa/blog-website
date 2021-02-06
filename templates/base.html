@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Blog Website</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header class="text-gray-600 body-font">
+      <div
+        class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+      >
+        <a href="/"
+          class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+            ></path>
+          </svg>
+          <span class="ml-3 text-xl">MyBlogs</span>
+        </a>
+        <nav
+          class="md:ml-auto flex flex-wrap items-center text-base justify-center"
+        >
+
+          {% if user.is_authenticated %}
+          <a class="text-blue-900 font-semibold">Hi, {{user.first_name}}</a>
+          <a href="/accounts/logout" class="inline-flex items-center bg-indigo-700 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-800 rounded text-white mx-4 mt-4 md:mt-0">Logout</a>
+
+          {% else %}
+          <a href="/accounts/register" class="inline-flex items-center bg-indigo-700 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-800 rounded text-white mx-2 mt-4 md:mt-0">Register</a>
+          <a href="/accounts/login" class="inline-flex items-center bg-indigo-700 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-800 rounded text-white mx-2 mt-4 md:mt-0">Login</a>
+          {% endif %}
+
+          {% if user.is_superuser %}
+          <a href="/post/add" class="inline-flex items-center bg-indigo-700 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-800 rounded text-white mx-2 mt-4 md:mt-0">Add Post</a>
+          {% endif %}
+
+
+        </nav>
+        
+      </div>
+    </header>
+    <!-- end-header -->
+
+    {% block content %} {% endblock %}
+
+    <!-- footer -->
+    <footer class="text-gray-600 body-font">
+      <div
+        class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
+      >
+        <a
+          class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+            ></path>
+          </svg>
+          <span class="ml-3 text-xl">MyBlogs</span>
+        </a>
+        <p
+          class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
+        >
+          © Copyright 2021 MyBlogs
+        </p>
+        <span
+          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"
+        >
+          <!-- <a class="text-gray-500">
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a> -->
+          <!-- <a class="ml-3 text-gray-500">
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a> -->
+          <a class="ml-3 text-gray-500 cursor-pointer" href="https://github.com/NeelamAryaa" style="color: #24292e" target="_blank">
+            <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>
+          </a>
+                                            
+          <a class="ml-3 text-gray-500 cursor-pointer" href="https://www.linkedin.com/in/neelam-aryaa-121a441a8" target="_blank">
+            
+            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true" style="color: #0a66c2"></i>
+          </a>
+        </span>
+      </div>
+    </footer>
+    <!-- end-footer -->
+  </body>
+</html>
